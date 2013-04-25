@@ -21,7 +21,7 @@ Mapping
 Object with SqlHierarchyId
 -----------------------------
 
-~~~ c
+~~~ c#
 namespace NHibernate.Map
 {
 	using Microsoft.SqlServer.Types;
