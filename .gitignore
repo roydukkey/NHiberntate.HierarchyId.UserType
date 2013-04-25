@@ -1,0 +1,11 @@
+# Build Folders (you can keep bin if you'd like, to store dlls and pdbs)
+NHiberntate.HierarchyId.UserType/bin
+NHiberntate.HierarchyId.UserType/obj
+
+# mstest test results
+TestResults
+.DS_Store
+*.suo
+
+# Ignore NuGet packages
+/packages
