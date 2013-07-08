@@ -1,5 +1,5 @@
-NHiberntate HierarchyId UserType (version 1.0.0.0)
-=====================================================
+NHiberntate HierarchyId UserType v1.0.0
+==========================================
 
 **Download** [Solution](//github.com/roydukkey/NHiberntate.HierarchyId.UserType/archive/master.zip) | [Assembly](//github.com/roydukkey/NHiberntate.HierarchyId.UserType/blob/master/Release/NHiberntate.HierarchyId.UserType-v1.0.0.0.zip?raw=true)
 
