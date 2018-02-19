@@ -23,24 +23,17 @@ namespace NHibernate.HierarchyId
 		/// <summary>
 		///		The SQL types for the columns mapped by this type.
 		/// </summary>
-		public SqlType[] SqlTypes
-		{
-			get { return new[] { NHibernateUtil.String.SqlType }; }
-		}
+		public SqlType[] SqlTypes => new[] { NHibernateUtil.String.SqlType };
+
 		/// <summary>
 		///		The type returned by <c>NullSafeGet()</c>
 		/// </summary>
-		public Type ReturnedType
-		{
-			get { return typeof(SqlHierarchyId); }
-		}
+		public Type ReturnedType => typeof(SqlHierarchyId);
+
 		/// <summary>
 		///		Object of this type are mutable.
 		/// </summary>
-		public bool IsMutable
-		{
-			get { return true; }
-		}
+		public bool IsMutable => true;
 
 		#endregion Properties
 
@@ -54,20 +47,25 @@ namespace NHibernate.HierarchyId
 		/// <returns></returns>
 		new public bool Equals(object x, object y)
 		{
-			if (ReferenceEquals(x, y)) return true;
-			if (x == null || y == null) return false;
+			if (ReferenceEquals(x, y)) {
+				return true;
+			}
+
+			if (x == null || y == null) {
+				return false;
+			}
 
 			return x.Equals(y);
 		}
+
 		/// <summary>
 		///		Get a hashcode for the instance, consistent with persistence "equality"
 		/// </summary>
 		/// <param name="x"></param>
 		/// <returns></returns>
 		public int GetHashCode(object x)
-		{
-			return x.GetHashCode();
-		}
+			=> x.GetHashCode();
+
 		/// <summary>
 		///		Retrieve an instance of the mapped class from a JDBC resultset.
 		/// </summary>
@@ -80,10 +78,13 @@ namespace NHibernate.HierarchyId
 		{
 			object prop1 = NHibernateUtil.String.NullSafeGet(rs, names[0]);
 
-			if (prop1 == null) return null;
+			if (prop1 == null) {
+				return null;
+			}
 
 			return SqlHierarchyId.Parse(new SqlString(prop1.ToString()));
 		}
+
 		/// <summary>
 		///		Write an instance of the mapped class to a prepared statement.
 		/// </summary>
@@ -93,12 +94,15 @@ namespace NHibernate.HierarchyId
 		/// <exception cref="HibernateException">HibernateException</exception>
 		public void NullSafeSet(IDbCommand cmd, object value, int index)
 		{
-			if (value == null)
+			if (value == null) {
 				((IDataParameter)cmd.Parameters[index]).Value = DBNull.Value;
+			}
 
-			else if (value is SqlHierarchyId)
+			else if (value is SqlHierarchyId) {
 				((IDataParameter)cmd.Parameters[index]).Value = ((SqlHierarchyId)value).ToString();
+			}
 		}
+
 		/// <summary>
 		///		Return a deep copy of the persistent state, stopping at entities and at collections.
 		/// </summary>
@@ -106,10 +110,13 @@ namespace NHibernate.HierarchyId
 		/// <returns>a copy</returns>
 		public object DeepCopy(object value)
 		{
-			if (value == null) return null;
+			if (value == null) {
+				return null;
+			}
 
 			return SqlHierarchyId.Parse(((SqlHierarchyId)value).ToString());
 		}
+
 		/// <summary>
 		///		During merge, replace the existing (<paramref name="target" />) value in the entity we are merging
 		///		to with a new (<paramref name="original" />) value from the detached entity we are merging.
@@ -119,9 +126,8 @@ namespace NHibernate.HierarchyId
 		/// <param name="owner">the managed entity</param>
 		/// <returns>the value to be merged</returns>
 		public object Replace(object original, object target, object owner)
-		{
-			return DeepCopy(original);
-		}
+			=> DeepCopy(original);
+
 		/// <summary>
 		///		Reconstruct an object from the cacheable representation.
 		/// </summary>
@@ -129,18 +135,15 @@ namespace NHibernate.HierarchyId
 		/// <param name="owner">the owner of the cached object</param>
 		/// <returns>a reconstructed object from the cachable representation</returns>
 		public object Assemble(object cached, object owner)
-		{
-			return DeepCopy(cached);
-		}
+			=> DeepCopy(cached);
+
 		/// <summary>
 		///		Transform the object into its cacheable representation.
 		/// </summary>
 		/// <param name="value">the object to be cached</param>
 		/// <returns>a cacheable representation of the object</returns>
 		public object Disassemble(object value)
-		{
-			return DeepCopy(value);
-		}
+			=> DeepCopy(value);
 
 		#endregion Methods
 	}
